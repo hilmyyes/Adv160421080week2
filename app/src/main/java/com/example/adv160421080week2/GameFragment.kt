@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.navigation.Navigation
+import com.google.android.material.snackbar.Snackbar
 
 class GameFragment : Fragment() {
     override fun onCreateView(
@@ -47,23 +48,29 @@ class GameFragment : Fragment() {
 
         btnSubmit.setOnClickListener {
             var pointKirim = point.toString()
-            if (txtInputJawaban.toString() == jawaban.toString()){
-                point++
-
-                no1 = (0..100).shuffled().last()
-                no2 = (0..100).shuffled().last()
-
-                txtNo1.text = no1.toString()
-                txtNo2.text = no2.toString()
-
-                var jawaban1 = no1 + no2
-                jawaban = jawaban1
-
-                txtInputJawaban.clear()
+            //Tambahan Pengecheckan jika tidak di isi (biar tidak langsung kalah)
+            if(txtInputJawaban.toString() == "") {
+                Snackbar.make(view, "Jawaban Tidak Boleh Kosong !!", Snackbar.LENGTH_SHORT).show()
             }
             else{
-                val action = GameFragmentDirections.actionResultFragment(pointKirim)
-                Navigation.findNavController(it).navigate(action)
+                if (txtInputJawaban.toString() == jawaban.toString()){
+                    point++
+
+                    no1 = (0..100).shuffled().last()
+                    no2 = (0..100).shuffled().last()
+
+                    txtNo1.text = no1.toString()
+                    txtNo2.text = no2.toString()
+
+                    var jawaban1 = no1 + no2
+                    jawaban = jawaban1
+
+                    txtInputJawaban.clear()
+                }
+                else{
+                    val action = GameFragmentDirections.actionResultFragment(pointKirim)
+                    Navigation.findNavController(it).navigate(action)
+                }
             }
         }
     }
