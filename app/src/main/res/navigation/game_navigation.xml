@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/game_navigation"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/itemHome">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/itemHome"
         android:name="com.example.adv160421080week2.MainFragment"
         android:label="Main Screen"
         tools:layout="@layout/fragment_main" >
@@ -35,10 +35,20 @@
         tools:layout="@layout/fragment_result" >
         <action
             android:id="@+id/actionMainFragment"
-            app:destination="@id/mainFragment"
+            app:destination="@id/itemHome"
             app:enterAnim="@android:anim/slide_in_left" />
         <argument
             android:name="point_player"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.example.adv160421080week2.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/itemHistory"
+        android:name="com.example.adv160421080week2.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 </navigation>
